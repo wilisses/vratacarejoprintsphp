@@ -38,7 +38,7 @@ try {
         $printer = new Printer($connector);
 
         include 'conexao.php';
-        $sql = pg_query($con,
+        @$sql = pg_query($con,
             "SELECT 
                 f.nomefantasia  AS nomefantasia,
                 ce.nome AS nomecliente,
