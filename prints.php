@@ -144,14 +144,14 @@ try {
         @session_start();
 		$_SESSION["return"] = 'Imprimindo...';
 ?>
-    <script language="JavaScript">window.location.href = "index.php";</script>
+    <script language="JavaScript">window.location.href = "Dashboard.php";</script>
 <?php      
     }
 } catch (Exception $e) {
     @session_start();
     $_SESSION["return"] = "Couldn't print to this printer: " . $e -> getMessage() . "\n";
 ?>
-    <script language="JavaScript">window.location.href = "index.php";</script>
+    <script language="JavaScript">window.location.href = "Dashboard.php";</script>
 <?php 
 }
 
