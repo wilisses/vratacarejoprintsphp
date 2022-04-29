@@ -152,10 +152,28 @@ a .logo {
   font-weight: bold;
 }
 
-#settings-on {
+.ecf {
+  color: var(--base-color-four);
+  font-size: var(--font-size-two);
+  position: fixed;
+  top: 0.3rem;
+  right: 5.5rem;
+  z-index: 10000;
+}
+
+.exit {
+  color: var(--base-color-four);
+  font-size: var(--font-size-two);
   position: fixed;
   top: 0.3rem;
   right: 1.5rem;
+  z-index: 10000;
+}
+
+#settings-on {
+  position: fixed;
+  top: 0.3rem;
+  right: 3.5rem;
   color: var(--base-color-four);
   font-size: var(--font-size-one);
   background-color: transparent;
@@ -166,7 +184,7 @@ a .logo {
 #settings-off {
   position: fixed;
   top: 0.3rem;
-  right: 1.5rem;
+  right: 3.5rem;
   color: var(--base-color-four);
   font-size: var(--font-size-one);
   background-color: transparent;

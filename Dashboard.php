@@ -1,3 +1,11 @@
+<?php
+  @session_start();
+  if (@$_POST['ecf']!= null) {
+    @$_SESSION["ecf"] = $_POST['ecf'];  
+  }
+
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -24,13 +32,19 @@
               <i>VRAtacarejoPrints</i>
             </div>
           </a>
-          
         </div>
       </div>
     </header>
     <main>
       <section>
         <div class="container">
+          <div class="ecf">
+            ECF <?php echo @$_SESSION["ecf"];?>
+          </div>
+          
+          <a href="index.php" class="exit">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+          </a>
           <div class="form">
             <form method="post" action="">
               <label class="form-label"> Pedido </label>
@@ -84,12 +98,10 @@
                       password = '$password'         
                     WHERE id = 1"
                   );
-                  @session_start();
                   $_SESSION["return"] = 'Salvo com sucesso!';     
                 }
 
                 $linha = 1;
-                @$sql = mysqli_query($conn,"SELECT * FROM databaseconfiguration WHERE id = 1");
                 @$settings = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM databaseconfiguration WHERE id = 1"));
               ?>
               <form method="post" action="" class="settings-form">
@@ -186,14 +198,13 @@
             </table>
           </div>
           <div class="prints-button">
-                <a href="prints.php?pedido=<?php echo $search;?>" class="print">
+                <a href="prints.php?ecf=<?php echo $_SESSION["ecf"];?>&pedido=<?php echo $search;?>" class="print">
                   <i class="fa fa-print" aria-hidden="true"></i> Imprimir
                 </a>
               </div>
         </div>
         <div class="escuro-return">
                 <?php 
-                    @session_start();
                     if(@$_SESSION["return"] != null){
                         echo "<div class='return'>".@$_SESSION["return"]."</div>";
                     ?>
@@ -202,7 +213,6 @@
                     </script>
                     <?php 
                         unset($_SESSION["return"]); 
-                        // @session_destroy();
                     }
                 ?>
             </div>

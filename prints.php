@@ -18,7 +18,8 @@ use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
  *  del testfile
  */
 try {
-    $pedido = $_GET['pedido'];
+    @$ecf = $_GET['ecf'];
+    @$pedido = $_GET['pedido'];
 
     date_default_timezone_set('America/Fortaleza');
     setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
@@ -29,7 +30,9 @@ try {
 
         // Enter the share name for your USB printer here
         //$connector = null;
-        $connector = new WindowsPrintConnector("smb://192.168.1.149/ELGINi9");
+        include 'conexao.php';
+        @$printeraddress = mysqli_fetch_array(mysqli_query($conn,"SELECT printeraddress FROM pdv WHERE ecf = $ecf"));
+        $connector = new WindowsPrintConnector("smb:".$printeraddress['printeraddress']);
 
         /* Print a "Hello world" receipt" */
         $printer = new Printer($connector);

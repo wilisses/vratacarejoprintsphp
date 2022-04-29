@@ -369,7 +369,7 @@ class WindowsPrintConnector implements PrintConnector
      */
     protected function runCopy($from, $to)
     {
-        return copy($from, $to);
+        return @copy($from, $to);
     }
 
     /**
