@@ -1,7 +1,9 @@
 <?php
   @session_start();
-  if (@$_POST['ecf']!= null) {
-    @$_SESSION["ecf"] = $_POST['ecf'];  
+  if (@$_SESSION["ecf"] == null) {  
+?>
+  <script language="JavaScript">window.location.href = "index.php";</script>
+<?php    
   }
 ?>
 <!DOCTYPE html>

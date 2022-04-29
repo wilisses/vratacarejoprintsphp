@@ -1,3 +1,7 @@
+<?php  
+  @session_start();
+  unset($_SESSION["ecf"]);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +23,7 @@
             <div class="container"> 
                 <div class="login">
                   <img src="img/logotipo.png" class="img">
-                  <form method="post" action="Dashboard.php">
+                  <form method="post" action="">
                     <label>ECF</label> 
                     <select name="ecf" required="required">
                       <option value="" title="ECF"></option>
@@ -37,8 +41,14 @@
         </section> 
         <section>          
             <div class="escuro-return">
+                <?php
+                if (@$_POST['ecf']!= null) {
+                  @$_SESSION["ecf"] = $_POST['ecf'];  
+                ?>
+                  <script language="JavaScript">window.location.href = "Dashboard.php";</script>
                 <?php 
-                  @session_destroy();
+                }
+                  
                 ?>
             </div>
         </section>

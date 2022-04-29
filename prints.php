@@ -1,4 +1,10 @@
 <?php
+  @session_start();
+  if (@$_SESSION["ecf"] == null) {  
+?>
+  <script language="JavaScript">window.location.href = "index.php";</script>
+<?php    
+  }
 /* Change to the correct path if you copy this example! */
 require __DIR__ . '/autoload.php';
 use Mike42\Escpos\Printer;
@@ -20,6 +26,14 @@ use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 try {
     @$ecf = $_GET['ecf'];
     @$pedido = $_GET['pedido'];
+
+    if ($pedido == null) {
+        @session_start();
+		$_SESSION["return"] = 'Por favor, informe o pedido';
+?>
+    <script language="JavaScript">window.location.href = "Dashboard.php";</script>
+<?php 
+    }
 
     date_default_timezone_set('America/Fortaleza');
     setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');

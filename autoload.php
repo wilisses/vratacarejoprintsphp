@@ -1,4 +1,10 @@
 <?php
+  @session_start();
+  if (@$_SESSION["ecf"] == null) {  
+?>
+  <script language="JavaScript">window.location.href = "index.php";</script>
+<?php    
+}
 /**
  * Users who do not have 'composer' to manage dependencies, include this
  * file to provide auto-loading of the classes in this library. 
