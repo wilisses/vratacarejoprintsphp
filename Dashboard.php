@@ -23,7 +23,7 @@
     <link rel="icon" type="image/x-icon" href="img/VRAtacado.ico">
   </head>
   <body>
-    <div class="conexao"><?php include 'conexao.php';?></div>
+    <?php include 'conexao.php';?>
     <header>
       <div class="container">
         <div class="head">
