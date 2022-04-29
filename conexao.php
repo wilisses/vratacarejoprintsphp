@@ -1,4 +1,21 @@
 <?php
-$con = pg_connect("host=192.168.1.149 port=38561 dbname=vr_bonejao user=postgres password=postgres");
-$LOJA = 1;
+  // Mysql
+
+  $host =  "localhost";
+  $root = "root";
+  $senha = "";
+  $db =  "vratacarejoprints";
+
+  @$conn = mysqli_connect($host,$root,$senha)or die("<b>error na conexão con</b>");
+  @$int =  mysqli_select_db($conn,$db)or die("<b>error na conexão int</b>");
+
+
+  $sql = mysqli_query($conn,"SELECT * FROM databaseconfiguration ");
+  @$connection = mysqli_fetch_array($sql);
+
+
+  // Postgres
+  @$con = pg_connect("host= ".$connection['host']." port=".$connection['port']." dbname=".$connection['dbname']." user=".$connection['user']." password=".$connection['password']."");
+  $LOJA = 1;
+
 ?>

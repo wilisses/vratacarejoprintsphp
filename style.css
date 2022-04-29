@@ -41,6 +41,12 @@ a {
   text-decoration: none;
 }
 
+.conexao {
+  position: absolute;
+  width: 100%;
+  margin-top: 15%;
+  height: 100%;
+}
 
 .container {
   display: flex;
@@ -65,7 +71,7 @@ a {
 }
 
 .form {
-  z-index: 10000;
+  z-index: 1000;
   padding-top: 4.3rem;
   position: fixed;
 }
@@ -106,12 +112,89 @@ a .logo {
   font-weight: bold;
 }
 
-.head .exit {
+#settings-on {
   position: fixed;
   top: 0.3rem;
   right: 1.5rem;
   color: var(--base-color-four);
   font-size: var(--font-size-one);
+  background-color: transparent;
+  border: none;
+  display: block;
+}
+
+#settings-off {
+  position: fixed;
+  top: 0.3rem;
+  right: 1.5rem;
+  color: var(--base-color-four);
+  font-size: var(--font-size-one);
+  background-color: transparent;
+  border: none;
+  display: none;
+}
+
+#settings {
+  position: fixed;
+  top: 4.8%;
+  right: 2.2%;
+  width: 20rem;
+  height: 25rem;
+  background: var(--base-color-five);
+  border: 1px solid var(--base-color-one);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  display: none;
+}
+
+.settings-form {
+  width: 80%;
+  margin-top: 5%;
+}
+
+.form-label {
+  font-size: var(--font-size-three);
+  font-family: var(--font-family);
+}
+
+.settings-form .form-settings {
+  padding: 0.25rem 0.30rem 0.25rem 0.30rem;
+  font-size: var(--font-size-three);
+  font-family: var(--font-family);
+  border: 0.1rem solid var(--base-color-six);
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.settings-form .form-submit {
+  padding: 0.50rem;
+  font-size: var(--font-size-three);
+  font-family: var(--font-family);
+  background: linear-gradient(352deg, var(--base-color-one), var(--base-color-two));
+  border: none;
+  box-shadow: 0rem 0.10rem 0.10rem 0rem var(--base-color-three);
+  color: var(--base-color-three);
+}
+
+.head-settings {
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(352deg, var(--base-color-one), var(--base-color-two));
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.settings-title {
+  color: var(--base-color-four);
+  font-size: var(--font-size-two);
+  margin: 0.6rem 5%;
+  font-weight: bold;
 }
 
 .table-container {

@@ -15,6 +15,7 @@
     <link rel="icon" type="image/x-icon" href="assets/VRAtualizador.ico">
   </head>
   <body>
+    <div class="conexao"><?php include 'conexao.php';?></div>
     <header>
       <div class="container">
         <div class="head">
@@ -38,6 +39,83 @@
                 <input type="submit" value="Buscar" class="form-submit"/>
               </div>
             </form>
+            <button id="settings-on" onclick="settings_on('settings_on')">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+          </button>
+          <button id="settings-off" onclick="settings_off('settings_off')">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+          </button>
+          <script type="text/javascript">
+            function settings_on(Mostrar){
+              if (Mostrar == 'settings_on') {
+                document.getElementById("settings").style.display = "block";
+                document.getElementById("settings-on").style.display = "none";
+                document.getElementById("settings-off").style.display = "block";
+              }
+            }
+            function settings_off(Ocultar){
+              if (Ocultar == 'settings_off') {
+                document.getElementById("settings").style.display = "none";
+                document.getElementById("settings-on").style.display = "block";
+                document.getElementById("settings-off").style.display = "none";
+              }
+            }
+          </script>
+          <div id="settings" >
+            <div class="head-settings">
+              <div class="settings-title">Configuração</div>
+            </div>
+            <div class="container">
+              <?php 
+                @$dbname = $_POST['dbname'];
+                @$host = $_POST['host'];
+                @$port = $_POST['port'];
+                @$user = $_POST['user'];
+                @$password = $_POST['password'];
+                @$submit = $_POST['submit'];
+
+                if ($submit == "Salvar"){
+                  @$sql=mysqli_query($conn ,
+                    "UPDATE databaseconfiguration SET 
+                      dbname = '$dbname',
+                      host = '$host',
+                      port = '$port',
+                      user = '$user',
+                      password = '$password'         
+                    WHERE id = 1"
+                  );
+                  @session_start();
+                  $_SESSION["return"] = 'Salvo com sucesso!';     
+                }
+
+                $linha = 1;
+                @$sql = mysqli_query($conn,"SELECT * FROM databaseconfiguration WHERE id = 1");
+                @$settings = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM databaseconfiguration WHERE id = 1"));
+              ?>
+              <form method="post" action="" class="settings-form">
+                <label class="form-label">Nome DB</label>
+              <br/>
+                <input type="text" name="dbname" class="form-settings" value="<?php echo $settings['dbname'] ?>">
+              <br/>
+                <label class="form-label">IP DB</label>
+              <br/>
+                <input type="text" name="host" class="form-settings" value="<?php echo $settings['host'] ?>">
+              <br/>
+                <label class="form-label">Porta</label>
+              <br/>
+                <input type="text" name="port" class="form-settings" value="<?php echo $settings['port'] ?>">
+              <br/>
+                <label class="form-label">Usuário</label>
+              <br/>
+                <input type="text" name="user" class="form-settings" value="<?php echo $settings['user'] ?>">
+              <br/>
+                <label class="form-label">Senha</label>
+              <br/>
+                <input type="password" name="password" class="form-settings" value="<?php echo $settings['password'] ?>">
+              <br/>
+                <input type="submit" name="submit" value="Salvar" class="form-submit"/>
+              </form>
+            </div>
           </div>
         </div>
       </section>
@@ -63,11 +141,10 @@
                 </th>
               </tr>
               <?php
-                include 'conexao.php';
                  
                 @$search = $_POST['search'];
                 if ($search != null) {
-                $sql = pg_query($con,
+                @$sql = pg_query($con,
                   "SELECT
                     v.id AS pedido,
                     a.codigobarras AS ean,
@@ -85,7 +162,7 @@
                     produtoautomacao a ON a.id_produto = vi.id_produto
                   WHERE v.id = $search;"
                 );
-                  while($pedido = pg_fetch_array($sql)){
+                  while(@$pedido = pg_fetch_array($sql)){
                       ?>
                     
               <tr>
