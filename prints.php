@@ -140,6 +140,7 @@ try {
                 $line++;
 
             }
+        $printer -> text(" \n");
         $printer -> cut();
         /* Close printer */
         $printer -> close();
