@@ -137,6 +137,8 @@
             <table class="table">
               <tr>
                 <th class="th">
+                </th>
+                <th class="th">
                   EAN
                 </th>
                 <th class="th">
@@ -174,10 +176,13 @@
                     produtoautomacao a ON a.id_produto = vi.id_produto
                   WHERE v.id = $search;"
                 );
-                  while(@$pedido = pg_fetch_array($sql)){
-                      ?>
+                $line = 1;
+                while(@$pedido = pg_fetch_array($sql)){?>
                     
               <tr>
+                <td class="td">
+                  <?php echo $line;?>
+                </td>
                 <td class="td">
                   <?php echo $pedido['ean'];?>
                 </td>
@@ -194,7 +199,7 @@
                   <?php echo $pedido['qtdatendida'];?>
                 </td>
               </tr> 
-              <?php }} ?>
+              <?php $line++;}} ?>
             </table>
           </div>
           <div class="prints-button">
