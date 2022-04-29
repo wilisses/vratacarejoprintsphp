@@ -1,10 +1,4 @@
 <?php
-  @session_start();
-  if (@$_SESSION["ecf"] == null) {  
-?>
-  <script language="JavaScript">window.location.href = "index.php";</script>
-<?php    
-}
   // Mysql
 
   $host =  "localhost";
