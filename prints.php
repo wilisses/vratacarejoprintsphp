@@ -29,7 +29,7 @@ try {
 
         // Enter the share name for your USB printer here
         //$connector = null;
-        $connector = new WindowsPrintConnector("smb://127.0.0.1/ELGINi9");
+        $connector = new WindowsPrintConnector("smb://192.168.1.149/ELGINi9");
 
         /* Print a "Hello world" receipt" */
         $printer = new Printer($connector);
@@ -60,6 +60,9 @@ try {
         $printer -> text("CLIENTE: ".$inf['nomecliente']."\n");
         $printer -> text("TELEFONE: ".$inf['telefonecliente']."\n");
         $printer -> text("PEDIDO : ".$pedido."      DATA/HORA: ".$datetime."\n\n");
+        $printer -> text("---------------------------------------------- \n");
+        $printer -> text("          GUIA DE SEPARACAO DE PEDIDO          \n");
+        $printer -> text("---------------------------------------------- \n\n");
         $printer -> text("# | COD | DESCRICAO | QTB.EMB | QTD | QTD.ATEN \n");
 
         $sql = pg_query($con,
@@ -80,9 +83,9 @@ try {
             produtoautomacao a ON a.id_produto = vi.id_produto
             WHERE v.id = $pedido;"
         );
-            
+            $line = 1;
             while($pedido = pg_fetch_array($sql)){
-
+                $printer -> text(str_pad($line, 3, "0", STR_PAD_LEFT)." ");
                 switch (strlen($pedido['ean'])) {
                     case 1:
                         $printer -> text($pedido['ean']."             ");
@@ -130,6 +133,8 @@ try {
                 $printer -> text("".$pedido['qtdemb']."");
                 $printer -> text("".$pedido['qtd']."");
                 $printer -> text("  ".$pedido['qtdatendida']."\n");
+
+                $line++;
 
             }
         $printer -> cut();

@@ -96,10 +96,10 @@
                   <?php echo $pedido['descricao'];?>
                 </td>
                 <td class="td">
-                  <?php echo $pedido['qtdemb'];?>
+                  <?php echo str_replace(['.'],',', $pedido['qtdemb']);?>
                 </td>
                 <td class="td">
-                  <?php echo $pedido['qtd'];?>
+                  <?php echo str_replace(['.'],',', $pedido['qtd']);?>
                 </td>
                 <td class="td">
                   <?php echo $pedido['qtdatendida'];?>
