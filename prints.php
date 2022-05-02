@@ -44,7 +44,10 @@ try {
 
         // Enter the share name for your USB printer here
         //$connector = null;
-        include 'conexao.php';
+             
+        include 'conexao/mysql.php';
+        include 'conexao/pg.php';
+  
         @$printeraddress = mysqli_fetch_array(mysqli_query($conn,"SELECT printeraddress FROM pdv WHERE ecf = $ecf"));
         $connector = new WindowsPrintConnector("smb:".$printeraddress['printeraddress']);
 

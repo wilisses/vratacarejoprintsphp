@@ -28,7 +28,7 @@
                     <select name="ecf" required="required">
                       <option value="" title="ECF"></option>
                       <?php 
-                        include 'conexao.php';
+                        include 'conexao/mysql.php';
                         @$sql = mysqli_query($conn,"SELECT ecf FROM pdv" );
                         while(@$ecf = mysqli_fetch_array($sql)){ ?>
                           <option value="<?php echo $ecf['ecf'] ?>" title="ECF"><?php echo $ecf['ecf'] ?></option>

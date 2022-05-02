@@ -23,7 +23,6 @@
     <link rel="icon" type="image/x-icon" href="img/VRAtacado.ico">
   </head>
   <body>
-    <?php include 'conexao.php';?>
     <header>
       <div class="container">
         <div class="head">
@@ -81,6 +80,8 @@
             </div>
             <div class="container">
               <?php 
+                include 'conexao/mysql.php';
+
                 @$dbname = $_POST['dbname'];
                 @$host = $_POST['host'];
                 @$port = $_POST['port'];
@@ -155,6 +156,7 @@
                 </th>
               </tr>
               <?php
+                include 'conexao/pg.php';
                  
                 @$search = $_POST['search'];
                 if ($search != null) {
